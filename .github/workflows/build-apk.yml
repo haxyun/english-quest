@@ -7,6 +7,10 @@ on:
 permissions:
   contents: write
 
+defaults:
+  run:
+    working-directory: EnglishQuest
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -43,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: EnglishQuest-apk
-          path: EnglishQuest.apk
+          path: EnglishQuest/EnglishQuest.apk
           retention-days: 30
 
       - name: Publier une Release (téléchargeable depuis le téléphone)
@@ -52,5 +56,5 @@ jobs:
           tag_name: build-${{ github.run_number }}
           name: English Quest build ${{ github.run_number }}
           body: APK compilé automatiquement.
-          files: EnglishQuest.apk
+          files: EnglishQuest/EnglishQuest.apk
           make_latest: true
